@@ -8,10 +8,12 @@
           {{ account.iban }} - {{ account.bez }} - Saldo {{ account.has_transaction_aggregate.aggregate.sum.amount}}
       </li>
     </ul>
+    <TransactionList />
   </div>
 </template>
 
 <script>
+import TransactionList from "../components/TransactionList"
 import gql from 'graphql-tag';
 
 export const GET_ACCOUNTS = gql`
@@ -31,6 +33,9 @@ export const GET_ACCOUNTS = gql`
   }`;
 
 export default {
+  components: {
+    TransactionList
+  },
   name: 'FinancialStatus',
   props: {
     msg: String
